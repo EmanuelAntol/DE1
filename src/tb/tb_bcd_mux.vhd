@@ -22,8 +22,7 @@ architecture tb of tb_bcd_mux is
               hold        : in std_logic;
               bcd         : in std_logic_vector (23 downto 0); --N_DIGITS*4*N_SIGNALS-1
               bin         : out std_logic_vector (3 downto 0);
-              anodes      : out std_logic_vector (7 downto 0); --N_DISPLAYS-1
-              range_error : out std_logic);
+              anodes      : out std_logic_vector (7 downto 0)); --N_DISPLAYS-1
     end component;
 
     signal clk         : std_logic;
@@ -34,7 +33,6 @@ architecture tb of tb_bcd_mux is
     signal bin         : std_logic_vector (3 downto 0);
     constant C_NDISPLAYS : integer := 8;
     signal anodes      : std_logic_vector (C_NDISPLAYS-1 downto 0);
-    signal range_error : std_logic;
 
     constant TbPeriod : time := 10 ns; -- ***EDIT*** Put right period here
     signal TbClock : std_logic := '0';
@@ -52,8 +50,7 @@ begin
               hold        => hold,
               bcd         => bcd,
               bin         => bin,
-              anodes      => anodes,
-              range_error => range_error);
+              anodes      => anodes);
 
     -- Clock generation
     TbClock <= not TbClock after TbPeriod/2 when TbSimEnded /= '1' else '0';

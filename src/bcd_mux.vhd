@@ -41,8 +41,7 @@ entity bcd_mux is
            hold : in STD_LOGIC;
            bcd : in STD_LOGIC_VECTOR (23 downto 0);--((N_DIGITS*4)*N_SIGNALS)-1
            bin : out STD_LOGIC_VECTOR (3 downto 0);
-           anodes : out STD_LOGIC_VECTOR (7 downto 0);--N_DISPLAYS-1
-           range_error : out STD_LOGIC);
+           anodes : out STD_LOGIC_VECTOR (7 downto 0));--N_DISPLAYS-1
 end bcd_mux;
 
 architecture Behavioral of bcd_mux is
@@ -55,8 +54,6 @@ begin
     begin
     
       if rising_edge(clk) then
-        --todo if in range range_error <= '1'; move to bin2bcd?
-
         -- Hold the value if hold is active
         if hold = '0' then
             sig_bcd <= bcd;
