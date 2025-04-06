@@ -9,11 +9,11 @@ entity sensor_read is
         MAX_ERR_DISTANCE : integer := 400
     );
     port (
-        clk		: in STD_LOGIC;                        -- 100MHZ board clock input
-        trigger		: in STD_LOGIC;                        -- Trigger pulse (same as the sensor input)
-	echo		: in STD_LOGIC;                        -- Input signal from the sensors (peak width measurement)
-	oob_error	: out STD_LOGIC;                       -- Indicator for when the measured distance is too short or too long (set the bounds in MIN/MAX_ERR_DISTANCE generic varibles)
-	distance	: out STD_LOGIC_VECTOR (8 downto 0)    -- Hardware distance limit is ~2-400cm => 9 bit output is needed
+        clk		: in STD_LOGIC;                     -- 100MHZ board clock input
+        trigger		: in STD_LOGIC;                     -- Trigger pulse (same as the sensor input)
+	echo		: in STD_LOGIC;                     -- Input signal from the sensors (peak width measurement)
+	oob_error	: out STD_LOGIC;                    -- Indicator for when the measured distance is too short or too long (set the bounds in MIN/MAX_ERR_DISTANCE generic varibles)
+	distance	: out STD_LOGIC_VECTOR (8 downto 0) -- Hardware distance limit is ~2-400cm => 9 bit output is needed
     );
 end sensor_read;
 
