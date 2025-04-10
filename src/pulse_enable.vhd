@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity pulse_enable is
 	Port (enable	: in STD_LOGIC;
-	      trigger	: out STD_LOGIC;
+	      trigger	: out STD_LOGIC := 0;
 	      clk	: in std_logic
 	);
 end pulse_enable;
