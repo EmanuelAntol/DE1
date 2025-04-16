@@ -13,16 +13,15 @@ end tb_bcd_mux;
 architecture tb of tb_bcd_mux is
 
     component bcd_mux
-        --generic (
-        --    N_DIGITS : integer := 3;
-        --    N_SIGNALS : integer := 2;
-        --    N_DISPLAYS : integer := 8
-        --);
+        generic (
+            N_DIGITS : integer := 3;
+            N_SIGNALS : integer := 2
+        );
         port (clk         : in std_logic;
               hold        : in std_logic;
-              bcd         : in std_logic_vector (23 downto 0); --N_DIGITS*4*N_SIGNALS-1
+              bcd         : in std_logic_vector (N_DIGITS*4*N_SIGNALS-1 downto 0);
               bin         : out std_logic_vector (3 downto 0);
-              anodes      : out std_logic_vector (7 downto 0)); --N_DISPLAYS-1
+              anodes      : out std_logic_vector (7 downto 0));
     end component;
 
     signal clk         : std_logic;
@@ -31,8 +30,7 @@ architecture tb of tb_bcd_mux is
     constant C_NSIGNALS : integer := 2;
     signal bcd         : std_logic_vector (C_NDIGITS*4*C_NSIGNALS-1 downto 0);
     signal bin         : std_logic_vector (3 downto 0);
-    constant C_NDISPLAYS : integer := 8;
-    signal anodes      : std_logic_vector (C_NDISPLAYS-1 downto 0);
+    signal anodes      : std_logic_vector (7 downto 0);
 
     constant TbPeriod : time := 10 ns; -- ***EDIT*** Put right period here
     signal TbClock : std_logic := '0';
@@ -41,11 +39,10 @@ architecture tb of tb_bcd_mux is
 begin
 
     dut : bcd_mux
-    --generic map (
-    --    N_DIGITS => C_NDIGITS,
-    --    N_SIGNALS => C_NSIGNALS,
-    --    N_DISPLAYS => C_NDISPLAYS
-    --)
+    generic map (
+        N_DIGITS => C_NDIGITS,
+        N_SIGNALS => C_NSIGNALS
+    )
     port map (clk         => clk,
               hold        => hold,
               bcd         => bcd,
