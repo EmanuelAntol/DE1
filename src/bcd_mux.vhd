@@ -1,55 +1,24 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 04/04/2025 12:44:00 AM
--- Design Name: 
--- Module Name: bcd_mux - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
--- Entity displays maximum of two hex numbers one to four digits wide
--- Should be instantiated
+-- Entity displays maximum of two hex numbers one to four digits wide, should be instantiated
 
 entity bcd_mux is
     Generic (
-        N_DIGITS : integer range 1 to 4 := 3;                             -- Digits used for single number
-        N_SIGNALS : integer range 1 to 2 := 2                            -- Numbers displayed
+        N_DIGITS : integer range 1 to 4 := 3;                                  -- Digits used for single number
+        N_SIGNALS : integer range 1 to 2 := 2                                  -- Number of signals displayed
     );
-    Port ( clk      : in STD_LOGIC;                          -- Component clock, controls the multiplexer speed (ideally 50 ms)
-           hold     : in STD_LOGIC;                          -- Hold the current displayed values
-           bcd      : in STD_LOGIC_VECTOR ((N_DIGITS*4)*N_SIGNALS-1 downto 0);  -- BCD inputs for all digits
-           bin      : out STD_LOGIC_VECTOR (3 downto 0);     -- Binary output to 7 segment display component
-           anodes   : out STD_LOGIC_VECTOR (7 downto 0));     -- 7 segment display anode vector, supports 8 displays
+    Port ( clk      : in STD_LOGIC;                                            -- Component clock, controls the multiplexer speed (ideally 50 ms)
+           hold     : in STD_LOGIC;                                            -- Hold the current displayed values
+           bcd      : in STD_LOGIC_VECTOR ((N_DIGITS*4)*N_SIGNALS-1 downto 0); -- BCD inputs for all digits
+           bin      : out STD_LOGIC_VECTOR (3 downto 0);                       -- Binary output to 7 segment display component
+           anodes   : out STD_LOGIC_VECTOR (7 downto 0));                      -- 7 segment display anode vector, supports 8 displays
 end bcd_mux;
 
 architecture Behavioral of bcd_mux is
-    signal sig_bcd : STD_LOGIC_VECTOR ((N_DIGITS*4)*N_SIGNALS-1 downto 0); -- BCD signal buffer
-    signal next_digit : integer range 0 to N_DIGITS*N_SIGNALS-1 := 0;                -- Next digit to display
-    signal space : integer range 1 to 3 := 4 - N_DIGITS; -- make constant out of this
+    signal sig_bcd : STD_LOGIC_VECTOR ((N_DIGITS*4)*N_SIGNALS-1 downto 0);     -- BCD signal buffer
+    signal next_digit : integer range 0 to N_DIGITS*N_SIGNALS-1 := 0;          -- Next digit to display
+    constant C_SPACER : integer range 1 to 3 := 4 - N_DIGITS;                  -- Spacer constant, shifts second signal to left display
 begin
 
     -- Main multiplexer process
@@ -73,7 +42,7 @@ begin
 
             anodes <= (others => '1');
             if N_SIGNALS = 2 and next_digit >= N_DIGITS then
-                anodes(next_digit+space) <= '0';
+                anodes(next_digit+C_SPACER) <= '0';
             else
                 anodes(next_digit) <= '0';
             end if;
@@ -84,7 +53,7 @@ begin
                 next_digit <= 0;
             end if;
 
-      end if;    
+      end if;
     end process multiplex;
 
 end Behavioral;
