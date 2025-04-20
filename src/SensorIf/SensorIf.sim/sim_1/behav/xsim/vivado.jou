@@ -1,0 +1,26 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Sun Apr 20 16:36:07 2025
+# Process ID         : 11872
+# Current directory  : C:/Users/intel/Documents/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent8864 C:\Users\intel\Documents\DE1\src\SensorIf\SensorIf.sim\sim_1\behav\xsim\cfg_tb_sensor_read_if_behav.wdb
+# Log file           : C:/Users/intel/Documents/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim/vivado.log
+# Journal file       : C:/Users/intel/Documents/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim\vivado.jou
+# Running On         : DESKTOP-I4OJ39E
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : AMD Ryzen 7 4700U with Radeon Graphics         
+# CPU Frequency      : 1996 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 8
+# Host memory        : 15811 MB
+# Swap memory        : 6442 MB
+# Total Virtual      : 22254 MB
+# Available Virtual  : 7718 MB
+#-----------------------------------------------------------
+start_gui
+open_wave_database {C:\Users\intel\Documents\DE1\src\SensorIf\SensorIf.sim\sim_1\behav\xsim\cfg_tb_sensor_read_if_behav.wdb}
+close_sim

@@ -1,0 +1,7 @@
+Running: xsim.dir/cfg_tb_sensor_read_if_behav/xsimk.exe -simmode gui -wdb cfg_tb_sensor_read_if_behav.wdb -simrunnum 0 -socket 62999
+Design successfully loaded
+Design Loading Memory Usage: 28476 KB (Peak: 28476 KB)
+Design Loading CPU Usage: 749 ms
+Simulation completed
+Simulation Memory Usage: 37104 KB (Peak: 37104 KB)
+Simulation CPU Usage: 6765 ms
