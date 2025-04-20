@@ -112,7 +112,7 @@ begin
 			
 	clock_echo : clock_en
 			generic map (
-				n_periods => 2
+				n_periods => 6
 			)
 			port map (
 				clk     => CLK100MHZ,
