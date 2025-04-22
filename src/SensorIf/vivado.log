@@ -1,0 +1,145 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Tue Apr 22 17:46:46 2025
+# Process ID         : 16600
+# Current directory  : C:/Users/intel/Documents/GitHub/DE1/src/SensorIf
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent17404 C:\Users\intel\Documents\GitHub\DE1\src\SensorIf\SensorIf.xpr
+# Log file           : C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/vivado.log
+# Journal file       : C:/Users/intel/Documents/GitHub/DE1/src/SensorIf\vivado.jou
+# Running On         : PC
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : AMD Ryzen 7 9700X 8-Core Processor             
+# CPU Frequency      : 3800 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 33460 MB
+# Swap memory        : 2147 MB
+# Total Virtual      : 35607 MB
+# Available Virtual  : 20560 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.xpr
+INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
+update_compile_order -fileset sources_1
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cfg_tb_sensor_read_if'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2024.2/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cfg_tb_sensor_read_if' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj cfg_tb_sensor_read_if_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.srcs/sources_1/new/sensor_read_if.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'sensor_read_if'
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot cfg_tb_sensor_read_if_behav xil_defaultlib.cfg_tb_sensor_read_if -log elaborate.log"
+Vivado Simulator v2024.2.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot cfg_tb_sensor_read_if_behav xil_defaultlib.cfg_tb_sensor_read_if -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling architecture behavioral of entity xil_defaultlib.sensor_read_if [sensor_read_if_default]
+Compiling architecture tb of entity xil_defaultlib.tb_sensor_read_if [tb_sensor_read_if_cfg_tb_sensor_...]
+Built simulation snapshot cfg_tb_sensor_read_if_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cfg_tb_sensor_read_if_behav -key {Behavioral:sim_1:Functional:cfg_tb_sensor_read_if} -tclbatch {cfg_tb_sensor_read_if.tcl} -view {C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/cfg_tb_sensor_read_if_behav.wcfg} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+open_wave_config C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/cfg_tb_sensor_read_if_behav.wcfg
+WARNING: Simulation object /tb_sensor_read_if_cfg_tb_sensor_read_if/dut/echo_detected was not found in the design.
+source cfg_tb_sensor_read_if.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cfg_tb_sensor_read_if_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+run 0.5 s
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cfg_tb_sensor_read_if'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2024.2/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cfg_tb_sensor_read_if' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj cfg_tb_sensor_read_if_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot cfg_tb_sensor_read_if_behav xil_defaultlib.cfg_tb_sensor_read_if -log elaborate.log"
+Vivado Simulator v2024.2.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot cfg_tb_sensor_read_if_behav xil_defaultlib.cfg_tb_sensor_read_if -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cfg_tb_sensor_read_if_behav -key {Behavioral:sim_1:Functional:cfg_tb_sensor_read_if} -tclbatch {cfg_tb_sensor_read_if.tcl} -view {C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/cfg_tb_sensor_read_if_behav.wcfg} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+open_wave_config C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/cfg_tb_sensor_read_if_behav.wcfg
+WARNING: Simulation object /tb_sensor_read_if_cfg_tb_sensor_read_if/dut/echo_detected was not found in the design.
+source cfg_tb_sensor_read_if.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cfg_tb_sensor_read_if_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+run 0.4 s
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Apr 22 18:27:43 2025...

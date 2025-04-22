@@ -52,23 +52,27 @@ begin
     begin
         -- ***EDIT*** Adapt initialization as needed
         echo <= '0';
-        wait for 15us ;
-        echo <= '1';
-        wait for 10ms ;
-        echo <= '0';
-
-
-        wait for 200ns ;
-        echo <= '1';
-        wait for 1.5ms ;
-        echo <= '0';
-
+        wait for 1 ms;
         
-         wait for 200ns ;
         echo <= '1';
-        wait for 800us ;
+        wait for 5.827 ms;
         echo <= '0';
-        wait for 20ms ;
+
+        wait for 1 ms;
+
+        -- Simulate echo for 3 cm (should trigger oob_error low bound)
+        echo <= '1';
+        wait for 0.175 ms; -- 3 * 5827 * 10ns = 174810 ns
+        echo <= '0';
+
+        wait for 1 ms;
+
+        -- Simulate echo for 450 cm (should trigger oob_error high bound)
+        echo <= '1';
+        wait for 26.2215 ms; -- 450 * 5827 * 10ns
+        echo <= '0';
+
+        wait for 5 ms;
 
         -- ***EDIT*** Add stimuli here
         wait for 100 * TbPeriod;

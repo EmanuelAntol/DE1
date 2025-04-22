@@ -17,14 +17,12 @@ architecture tb of tb_sensor_read is
         MAX_ERR_DISTANCE : integer := 400);
         
         port (clk       : in std_logic;
-              trigger   : in std_logic;
               echo      : in std_logic;
               oob_error : out std_logic;
               distance  : out std_logic_vector (8 downto 0));
     end component;
 
     signal clk       : std_logic;
-    signal trigger   : std_logic;
     signal echo      : std_logic;
     signal oob_error : std_logic;
     signal distance  : std_logic_vector (8 downto 0);
@@ -43,7 +41,6 @@ begin
     MAX_ERR_DISTANCE => C_MAX_ERR_DISTANCE
     )
     port map (clk       => clk,
-              trigger   => trigger,
               echo      => echo,
               oob_error => oob_error,
               distance  => distance);
@@ -57,13 +54,12 @@ begin
     stimuli : process
     begin
         -- ***EDIT*** Adapt initialization as needed
-        trigger <= '0';
+        echo <= '1';
+        wait for 11ns ;
+        echo <= '1';
+        wait for 11ns ;
         echo <= '0';
-        wait for 20ns ;
-        trigger <= '1';
-        wait for 15us ;
-        trigger <= '0';
-        wait for 15us ;
+        wait for 5ns ;
         echo <= '1';
         wait for 10ms ;
         echo <= '0';

@@ -1,0 +1,36 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Tue Apr 22 17:46:46 2025
+# Process ID         : 16600
+# Current directory  : C:/Users/intel/Documents/GitHub/DE1/src/SensorIf
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent17404 C:\Users\intel\Documents\GitHub\DE1\src\SensorIf\SensorIf.xpr
+# Log file           : C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/vivado.log
+# Journal file       : C:/Users/intel/Documents/GitHub/DE1/src/SensorIf\vivado.jou
+# Running On         : PC
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : AMD Ryzen 7 9700X 8-Core Processor             
+# CPU Frequency      : 3800 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 33460 MB
+# Swap memory        : 2147 MB
+# Total Virtual      : 35607 MB
+# Available Virtual  : 20560 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/SensorIf.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+open_wave_config C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/cfg_tb_sensor_read_if_behav.wcfg
+source cfg_tb_sensor_read_if.tcl
+run 0.5 s
+close_sim
+launch_simulation
+open_wave_config C:/Users/intel/Documents/GitHub/DE1/src/SensorIf/cfg_tb_sensor_read_if_behav.wcfg
+source cfg_tb_sensor_read_if.tcl
+run 0.4 s
+close_sim

@@ -1,35 +1,6 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 04/20/2025 11:39:48 AM
--- Design Name: 
--- Module Name: Sensor_readv2 - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity Sensor_readv2 is
     generic (
@@ -57,46 +28,48 @@ begin
     read_sens : process (clk) is         
         begin 
         
-        case current_state is                              -- FSM process
-            when IDLE =>                                   -- "IDLE" state resets the temporary distance, counter signal and waits until the sensor echo signal is HIGH
-                counter  <= 0;
-                tmp_dst_out <= 0;
-                if (echo = '1') then
-                    current_state <= COUNTING;
-                else
-                    current_state <= WRITE;
-                end if;
-            
-                
-            when COUNTING =>
-                if (echo = '1' and counter = CM) then      -- when the amount of clock high signals ("counter") reaches a number coresponding to 1cm of lenght,
-                    tmp_dst_out <= tmp_dst_out + 1;        -- the "counter" is reset and distance counter incremented by 1 ("tmp_dst_out")
-                    counter <= 0;
-                else    
-                    counter <= counter + 1;
-                end if;
-                                                           -- "COUNTING" state counts the number of clock high signals that the "echo" is HIGH
-                if (echo = '0') then                       -- if "echo" drops to LOW, the counting stops
-                    current_state <= WRITE;
-                end if;
-                
+        if rising_edge(clk) then
+            case current_state is                              -- FSM process
+                when IDLE =>                                   -- "IDLE" state resets the temporary distance, counter signal and waits until the sensor echo signal is HIGH
+                    counter  <= 0;
+                    tmp_dst_out <= 0;
+                    if (echo = '1') then
+                        current_state <= COUNTING;
+                    else
+                        current_state <= WRITE;
+                    end if;
                 
                     
-            when WRITE =>                                  -- "WRITE" state sets the "distance" component output to the measured "tmp_dst_out" value 
-                distance <= std_logic_vector(to_unsigned(tmp_dst_out, 9));
-                                                           -- if the measured value is lower or higher than the customized limits, the "oob_error" is set to HIGH
-                if (tmp_dst_out < MIN_ERR_DISTANCE or tmp_dst_out > MAX_ERR_DISTANCE) then
-                    oob_error <= '1';
-                else
-                    oob_error <= '0';
-                end if;
+                when COUNTING =>
+                    if (echo = '1' and counter = CM) then      -- when the amount of clock high signals ("counter") reaches a number coresponding to 1cm of lenght,
+                        tmp_dst_out <= tmp_dst_out + 1;        -- the "counter" is reset and distance counter incremented by 1 ("tmp_dst_out")
+                        counter <= 0;
+                    else    
+                        counter <= counter + 1;
+                    end if;
+                                                               -- "COUNTING" state counts the number of clock high signals that the "echo" is HIGH
+                    if (echo = '0') then                       -- if "echo" drops to LOW, the counting stops
+                        current_state <= WRITE;
+                    end if;
+                    
+                    
+                        
+                when WRITE =>                                  -- "WRITE" state sets the "distance" component output to the measured "tmp_dst_out" value 
+                    distance <= std_logic_vector(to_unsigned(tmp_dst_out, 9));
+                                                               -- if the measured value is lower or higher than the customized limits, the "oob_error" is set to HIGH
+                    if (tmp_dst_out < MIN_ERR_DISTANCE or tmp_dst_out > MAX_ERR_DISTANCE) then
+                        oob_error <= '1';
+                    else
+                        oob_error <= '0';
+                    end if;
+                    
+                    if (echo = '1') then  
+                        current_state <= IDLE;
+                    end if;
+               
                 
-                if (echo = '1') then  
-                    current_state <= IDLE;
-                end if;
-                
-                
-        end case;
+            end case;
+        end if;       
     end process read_sens;
 
 

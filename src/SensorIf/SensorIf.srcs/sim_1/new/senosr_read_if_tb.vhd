@@ -54,15 +54,15 @@ begin
         echo <= '1';
         wait for 10ms ;
         echo <= '0';
-        wait for 20ms ;
 
-        wait for 15us ;
+
+        wait for 200ns ;
         echo <= '1';
-        wait for 200us ;
+        wait for 1.5ms ;
         echo <= '0';
-        wait for 20ms ;
+
         
-         wait for 15us ;
+         wait for 200ns ;
         echo <= '1';
         wait for 800us ;
         echo <= '0';

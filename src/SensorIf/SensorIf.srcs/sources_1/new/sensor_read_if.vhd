@@ -19,7 +19,7 @@ end sensor_read_if;
 architecture Behavioral of sensor_read_if is
 
     
-    constant CM : integer := 5827;                         -- Number of clock pulses from 100MHz signal need for sound wave to travel 1cm
+    constant CM : integer := 2914;                         -- Number of clock pulses from 100MHz signal need for sound wave to travel 1cm
     signal counter : integer range 0 to CM + 1;            -- Internal clock counter
     signal tmp_dst_out : integer range 0 to 401;           -- Temporary distance signal
     signal echoBuffer : STD_LOGIC := '0';
