@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_Sensor_readv2_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_Sensor_readv2" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="4.736706586 ms"></ZoomStartTime>
+      <ZoomEndTime time="16.176706587 ms"></ZoomEndTime>
+      <Cursor1Time time="9.546706586 ms"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="211"></NameColumnWidth>
+      <ValueColumnWidth column_width="113"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="10" />
+   <wvobject fp_name="/tb_Sensor_readv2/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Sensor_readv2/echo" type="logic">
+      <obj_property name="ElementShortName">echo</obj_property>
+      <obj_property name="ObjectShortName">echo</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Sensor_readv2/oob_error" type="logic">
+      <obj_property name="ElementShortName">oob_error</obj_property>
+      <obj_property name="ObjectShortName">oob_error</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Sensor_readv2/distance" type="array">
+      <obj_property name="ElementShortName">distance[8:0]</obj_property>
+      <obj_property name="ObjectShortName">distance[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Sensor_readv2/TbClock" type="logic">
+      <obj_property name="ElementShortName">TbClock</obj_property>
+      <obj_property name="ObjectShortName">TbClock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Sensor_readv2/TbSimEnded" type="logic">
+      <obj_property name="ElementShortName">TbSimEnded</obj_property>
+      <obj_property name="ObjectShortName">TbSimEnded</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Sensor_readv2/C_MIN_ERR_DISTANCE" type="other">
+      <obj_property name="ElementShortName">C_MIN_ERR_DISTANCE</obj_property>
+      <obj_property name="ObjectShortName">C_MIN_ERR_DISTANCE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Sensor_readv2/C_MAX_ERR_DISTANCE" type="other">
+      <obj_property name="ElementShortName">C_MAX_ERR_DISTANCE</obj_property>
+      <obj_property name="ObjectShortName">C_MAX_ERR_DISTANCE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Sensor_readv2/TbPeriod" type="other">
+      <obj_property name="ElementShortName">TbPeriod</obj_property>
+      <obj_property name="ObjectShortName">TbPeriod</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Sensor_readv2/dut/current_state" type="other">
+      <obj_property name="ElementShortName">current_state</obj_property>
+      <obj_property name="ObjectShortName">current_state</obj_property>
+   </wvobject>
+</wave_config>

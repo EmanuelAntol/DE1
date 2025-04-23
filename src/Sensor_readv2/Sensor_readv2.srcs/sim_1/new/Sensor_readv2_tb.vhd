@@ -58,14 +58,14 @@ begin
         wait for 5.827 ms;
         echo <= '0';
 
-        wait for 1 ms;
+        wait for 200 ms;
 
         -- Simulate echo for 3 cm (should trigger oob_error low bound)
         echo <= '1';
         wait for 0.175 ms; -- 3 * 5827 * 10ns = 174810 ns
         echo <= '0';
 
-        wait for 1 ms;
+        wait for 200 ms;
 
         -- Simulate echo for 450 cm (should trigger oob_error high bound)
         echo <= '1';
