@@ -59,6 +59,7 @@ architecture Behavioral of top_level is
             N_SIGNALS : integer
         );
 		Port (  clk : in STD_LOGIC;
+				enable : in STD_LOGIC;
            		hold : in STD_LOGIC;
            		bcd : in STD_LOGIC_VECTOR (23 downto 0);--((N_DIGITS*4)*N_SIGNALS)-1
            		bin : out STD_LOGIC_VECTOR (3 downto 0);
@@ -177,7 +178,8 @@ begin
 			N_SIGNALS => 2                                
 	    )
 		port map (
-			clk    => clock_signal,
+			clk    => CLK100MHZ,
+			enable => clock_signal,
 			hold   => BTNC,
            	bcd    => bcd_in_mux,
            	bin    => binary_out_mux,
