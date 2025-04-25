@@ -31,7 +31,7 @@ architecture Behavioral of Sensor_readv2 is
 
 begin
 
-    debounce_process : process(clk)
+    debounce_process : process(clk, echo)
         begin
             if rising_edge(clk) then
                 echo_sync <= echo;  
@@ -53,7 +53,7 @@ begin
     end process;
     
     
-    read_sens : process (clk) is         
+    read_sens : process (clk, echo) is         
         begin 
         
         if rising_edge(clk) then
@@ -92,7 +92,6 @@ begin
                     if (echo_stable = '0') then                    
                         current_state <= IDLE;
                     end if;
-
                
                 
             end case;

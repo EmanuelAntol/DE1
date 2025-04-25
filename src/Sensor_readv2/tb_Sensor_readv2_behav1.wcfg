@@ -10,13 +10,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="4.736706586 ms"></ZoomStartTime>
-      <ZoomEndTime time="16.176706587 ms"></ZoomEndTime>
-      <Cursor1Time time="9.546706586 ms"></Cursor1Time>
+      <ZoomStartTime time="5.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="57.498523719 ms"></ZoomEndTime>
+      <Cursor1Time time="79.000000000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="211"></NameColumnWidth>
-      <ValueColumnWidth column_width="113"></ValueColumnWidth>
+      <ValueColumnWidth column_width="108"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="10" />
    <wvobject fp_name="/tb_Sensor_readv2/clk" type="logic">
@@ -34,10 +34,15 @@
    <wvobject fp_name="/tb_Sensor_readv2/distance" type="array">
       <obj_property name="ElementShortName">distance[8:0]</obj_property>
       <obj_property name="ObjectShortName">distance[8:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/tb_Sensor_readv2/TbClock" type="logic">
       <obj_property name="ElementShortName">TbClock</obj_property>
       <obj_property name="ObjectShortName">TbClock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_Sensor_readv2/dut/current_state" type="other">
+      <obj_property name="ElementShortName">current_state</obj_property>
+      <obj_property name="ObjectShortName">current_state</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_Sensor_readv2/TbSimEnded" type="logic">
       <obj_property name="ElementShortName">TbSimEnded</obj_property>
@@ -54,9 +59,5 @@
    <wvobject fp_name="/tb_Sensor_readv2/TbPeriod" type="other">
       <obj_property name="ElementShortName">TbPeriod</obj_property>
       <obj_property name="ObjectShortName">TbPeriod</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_Sensor_readv2/dut/current_state" type="other">
-      <obj_property name="ElementShortName">current_state</obj_property>
-      <obj_property name="ObjectShortName">current_state</obj_property>
    </wvobject>
 </wave_config>
