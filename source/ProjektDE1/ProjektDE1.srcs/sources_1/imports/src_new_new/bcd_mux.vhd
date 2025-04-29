@@ -8,7 +8,8 @@ entity bcd_mux is
         N_DIGITS : integer range 1 to 4 := 3;                                  -- Digits used for single number
         N_SIGNALS : integer range 1 to 2 := 2                                  -- Number of signals displayed
     );
-    Port ( clk      : in STD_LOGIC;                                            -- Component clock, controls the multiplexer speed (ideally 50 ms)
+    Port ( clk      : in STD_LOGIC;                                            -- System clock
+           enable   : in STD_LOGIC;                                            -- Component enable, controls the multiplexer speed (ideally 50 Hz)
            hold     : in STD_LOGIC;                                            -- Hold the current displayed values
            bcd      : in STD_LOGIC_VECTOR ((N_DIGITS*4)*N_SIGNALS-1 downto 0); -- BCD inputs for all digits
            bin      : out STD_LOGIC_VECTOR (3 downto 0);                       -- Binary output to 7 segment display component
@@ -23,10 +24,11 @@ begin
 
     -- Main multiplexer process
     -- Triggers on every clock input
+    -- Runs on rising edge of clock and only if enabled
     multiplex : process (clk) is
     begin
 
-      if rising_edge(clk) then
+      if (rising_edge(clk) and enable = '1') then
         -- Hold the value if hold is active,
         -- buffer new input value if hold inactive.
         if hold = '0' then
