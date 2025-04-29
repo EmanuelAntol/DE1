@@ -43,6 +43,7 @@ We used the shift plus three algorithm to convert the binary value to bcd. The a
 The bcd_mux component is a multiplexor used to take the input bcd value from 2 sensors and display them on the seven segment display at the same time.
 It takes one half of the inputing bcd values and decides, if it should display it on the right or left seven segment display, by enabling cathodes on the Nexys board. 
 From this half of the bcd value it takes group of 4 binary values and assigns them to the binary output, which is then used in the [[#bin2seg.vhd]].
+![[tb_bcd_mux.png]]
 
 This component also incorporates hold function that is used to hold the current displayed value on the display, if we hold the center button. 
 
