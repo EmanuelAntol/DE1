@@ -13,7 +13,7 @@ The goal of this project was to measure distance from two separate HS-SR04 ultra
 
 If the measured distance is higher (or lower) than the ultrasound is able to measure, a red diod will light up. According to the datasheet, the distance range which the sensor is able to correctly measure is from 2 cm to 400 cm.
 
-
+![[Showcase]](img/HW/Untitled%20video.mp4)
 
 
 ## Hardware description of demo application
@@ -38,6 +38,7 @@ The bin_bcd.vhd component is used to convert the binary distance measured in [se
 
 We defined two ports: binary_in (for the ) 
 We used the shift plus three algorithm to convert the binary value to bcd. The algorithm takes first 4 bits, compares it, if its bigger than 4 in binary. If it is bigger than 4 we add 3 in binary to the bcd_value and continue to the next 4 bits.
+![[bin_bcd.png]](img/bin_bcd.png)
 
 ### bcd_mux
 The bcd_mux component is a multiplexor used to take the input bcd value from 2 sensors and display them on the seven segment display at the same time.
