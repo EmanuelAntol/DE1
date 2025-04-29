@@ -1,4 +1,4 @@
-# Ultrasound senzor HS-SR04
+# Ultrasound sensor HS-SR04
 ## Team members
 - Emanuel Antol : Team leader, sensor_read.vhd
 - Jan Konkolský : topLevel.vhdl, pulse_enable.vhd
@@ -31,7 +31,8 @@ The pulse_enable component sends 15 ns wide pulse to the HS-SR04‘s trigger pin
 
 ### sensor_read
 The sensor_read component is working as a finite state machine with 3 states (Waiting, Counting, Write) and it is used to measure the width of the pulse received from the HS-SR04’s echo pin, convert it to a binary distance value and sends it to the [bin_bcd](#bin_bcd). The sensor is calibrated to the ambient temperature of 20°C.
-If the measured distance is out of bounds, it will activate an error diode. 
+If the measured distance is out of bounds, it will activate an error signal.
+![[tb_sensor_readv2.png]](img/tb_sensor_readv2.png)
 
 ### bin_bcd
 The bin_bcd.vhd component is used to convert the binary distance measured in [sensor_read](#sensor_read.vhd), and convert it to bcd code, which is than further send to [bcd_mux](#bcd_mux.vhd).
