@@ -1,9 +1,9 @@
 # Ultrasound sensor HS-SR04
 ## Team members
-- Emanuel Antol : Team leader, sensor_read.vhd
-- Jan Konkolský : topLevel.vhdl, pulse_enable.vhd
-- Vojtěch Trunda : bcd_mux.vhd, debugging
-- David Karas : bin_bcd.vhd, Documentation
+- Emanuel Antol : Team leader, sensor_read.vhd, debugging, hardware setup
+- Jan Konkolský : topLevel.vhdl, pulse_enable.vhd, debugging
+- Vojtěch Trunda : bcd_mux.vhd, debugging, hardware setup
+- David Karas : bin_bcd.vhd, Documentation, Readme file
 
 ### Abstract
 ---
