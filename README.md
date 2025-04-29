@@ -27,7 +27,7 @@ If the measured distance is higher (or lower) than the ultrasound is able to mea
 
 
 ### pulse_enable
-The pulse_enable component sends 15 ns wide pulse to the HS-SR04‘s trigger pin, which will start measuring proces. This component is dependant on the clock signal. If the clock signal is 0 it will not activate the HS-SR04 sensor.
+The pulse_enable component sends 15 us wide pulse to the HS-SR04‘s trigger pin, which will start measuring proces. This component is dependant on the clock signal. If the clock signal is 0 it will not activate the HS-SR04 sensor.
 
 ### sensor_read
 The sensor_read component is working as a finite state machine with 3 states (Waiting, Counting, Write) and it is used to measure the width of the pulse received from the HS-SR04’s echo pin, convert it to a binary distance value and sends it to the [bin_bcd](#bin_bcd). The sensor is calibrated to the ambient temperature of 20°C.
