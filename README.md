@@ -31,7 +31,7 @@ The pulse_enable component sends 15 us wide pulse to the HS-SR04‘s trigger pin
 
 ### sensor_read
 The sensor_read component is working as a finite state machine with 3 states (Waiting, Counting, Write) and it is used to measure the width of the pulse received from the HS-SR04’s echo pin, convert it to a binary distance value and sends it to the [bin_bcd](#bin_bcd). The sensor is calibrated to the ambient temperature of 20°C.
-If the measured distance is out of bounds, it will activate an error signal.
+If the measured distance is out of bounds, it will activate an error signal. Distance bounds are customizable through genreic component parameters.
 ![[tb_sensor_readv2.png]](img/tb_sensor_readv2.png)
 
 ### bin_bcd
