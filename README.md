@@ -7,25 +7,18 @@
 
 ### Abstract
 ---
-
-
 The goal of this project was to measure distance from two separate HS-SR04 ultrasound sensors, and display them on two seven-segment displays at the same time. For background functions we used the Nexys A7 50-T and Arduino UNO as a power supply for the HS-SR04 sensor, as the Nexys A7 50-5 does not support the 3.3V output.
 
 If the measured distance is higher (or lower) than the ultrasound is able to measure, a red diod will light up. According to the datasheet, the distance range which the sensor is able to correctly measure is from 2 cm to 400 cm.
 
-![[Showcase]](img/HW/Untitled%20video.mp4)
-
-
 ## Hardware description of demo application
 ---
-
-
-
+In our application we put the HS-SR04 sensor on the bredboard, which makes it easier for prototyping.
+To supply power to the HS-SR04 sensor we used an Arduino, since the Nexys A7 50-T does not support the required 3.3V. We had to use voltage divider, to step down the 5V from Arduino to 3.3V. 
+The echo output is connected to the JD3 (JD4 for 2nd sensor) port on the HS-SR04 sensor and the trigger input is connected to the JD1 (JD2 for 2nd sensor).
 
 ## Software description
 ---
-
-
 ### pulse_enable
 The pulse_enable component sends 15 us wide pulse to the HS-SR04‘s trigger pin, which will start measuring proces. This component is dependant on the clock signal. If the clock signal is 0 it will not activate the HS-SR04 sensor.
 
@@ -55,6 +48,9 @@ The bin2seg component is used to convert the inputing distance value and display
 
 ### top_level
 The top_level component is used to incorporate all of the components mentioned above, and to connect their inputs and outputs with the corresponding inputs and outputs. 
+
+### clock_en
+The clock_en component is used to supply clock signal to components that require clock signal. Components which require clock signal: [pulse_enable](#pulse_enable), [sensor_read](#sensor_read) and [bcd_mux](#bcd_mux) 
 
 ## References
 ___
