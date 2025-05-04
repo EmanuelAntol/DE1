@@ -31,7 +31,7 @@ The "echo" output pin of the first sensor was connected to port JD3 (JD4 for the
 ### Top_level
 The top_level component is used to integrate all individual modules and connect their inputs and outputs to the corresponding pins on the development board. It also defines the generic parameters for all applicable components. You can see all the individual components, as well as the top_level diagram, in the image below.
 
-![[top_level.png]](img/top_level_Schema.png)
+![[top_level_Schema.png]](img/top_level_Schema.png)
 
 
 ### pulse_enable
