@@ -80,11 +80,12 @@ The <code>bcd_mux</code> component is a multiplexer used to take the input BCD v
 
 From this portion of the BCD value, the <code>bcd_mux</code> extracts a group of 4 binary values and assigns them to the binary output. This output is then passed to the <a href="#bin2seg">bin2seg</a> component for further processing.
 
+This component also includes a <strong>hold</strong> function, which allows the currently displayed value to be retained on the display when the center button is pressed.
+
+
 You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/src_new_new/bcd_mux.vhd">here</a>.
 
 ![[tb_bcd_mux.png]](img/tb_bcd_mux.png)
-
-This component also incorporates hold function that is used to hold the current displayed value on the display, if we hold the center button. 
 
 ### bin2seg
 The bin2seg component is used to convert the inputing distance value and display it on the 7 segment display. 
