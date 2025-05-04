@@ -28,8 +28,28 @@ The "echo" output pin of the first sensor was connected to port JD3 (JD4 for the
 
 
 ## Software Architecture and Implementation
+
+To support efficient testing and collaboration, we designed the software to be as modular as possible.  
+This modular approach allowed for individual components to be developed and tested independently, which proved instrumental in identifying and resolving bugs during the final top-level integration.
+
+The software solution is divided into three main parts to clearly illustrate its functionality:
+
+1. **Sensor Reading and Supporting Components**  
+     - Responsible for interfacing with the HC-SR04 ultrasonic sensors and handling the timing logic required to measure and convert pulse widths into distance values (in cm) accurately. It also includes error indication for distances that fall outside the reliable operating range.
+     - Components: sensor_readv2.vhd, pulse_enable.vhd, clock_en.vhd
+
+2. **Data Conversion**  
+     - Converts binary distance values into BCD format suitable for driving seven-segment displays.
+     - Components: bin_bcd.vhd
+
+3. **Data Displaying**  
+     - Manages multiplexing of the output to the seven-segment displays, ensuring that all sensor measurements are shown simultaneously and without visible flickering.
+     - Components: bcd_mux.vhd, bin2seg.vhd, clock_en.vhd
+  
+The following section describes the individual components of the final software implementation.
+
 ### Top_level
-The top_level component is used to integrate all individual modules and connect their inputs and outputs to the corresponding pins on the development board. It also defines the generic parameters for all applicable components. You can see all the individual components, as well as the top_level diagram, in the image below.
+The top_level component is used to integrate all individual modules and connect their inputs and outputs to the corresponding pins on the development board. It also defines the generic parameters for all applicable components. You can see all the individual components in the top_level diagram, in the image below.
 
 <img src="img/Top_level_Schema.png">
 
