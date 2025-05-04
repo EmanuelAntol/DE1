@@ -31,8 +31,7 @@ The "echo" output pin of the first sensor was connected to port JD3 (JD4 for the
 ### Top_level
 The top_level component is used to integrate all individual modules and connect their inputs and outputs to the corresponding pins on the development board. It also defines the generic parameters for all applicable components. You can see all the individual components, as well as the top_level diagram, in the image below.
 
-![[top_level_Schema.png]](img/top_level_Schema.png)
-
+<img src="img/Top_level_Schema.png">
 
 ### pulse_enable
 The pulse_enable component sends 15 us wide pulse to the HS-SR04‘s trigger pin, which will start measuring proces. This component is dependant on the clock signal. If the clock signal is 0 it will not activate the HS-SR04 sensor.
