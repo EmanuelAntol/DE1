@@ -1,6 +1,6 @@
 # Ultrasound sensor HS-SR04
 ## Team members
-- Emanuel Antol : sensor_read.vhd, hardware setup, Readme file, debugging
+- Emanuel Antol : sensor_read.vhd, hardware setup, debugging
 - Jan Konkolský : topLevel.vhd, pulse_enable.vhd, debugging
 - Vojtěch Trunda : bcd_mux.vhd, debugging, hardware setup
 - David Karas : bin_bcd.vhd, Documentation, Readme file
@@ -12,10 +12,16 @@ Our aim was to measure distances using two separate HC-SR04 ultrasonic sensors a
 
 The following sections describe our final hardware and software solutions designed to meet these objectives.
 
-## Hardware description of demo application
-In our application we put the HS-SR04 sensor on the bredboard, which makes it easier for prototyping.
-To supply power to the HS-SR04 sensor we used an Arduino, since the Nexys A7 50-T does not support the required 3.3V. We had to use voltage divider, to step down the 5V from Arduino to 3.3V. 
-The echo output is connected to the JD3 (JD4 for 2nd sensor) port on the HS-SR04 sensor and the trigger input is connected to the JD1 (JD2 for 2nd sensor).
+## Hardware Setup and Sensor Integration
+
+For background functionality, we used the Nexys A7-50T FPGA development board, while an Arduino UNO served as a power supply for the HC-SR04 sensors, since the Nexys A7-50T does not provide the required 5V output. A breadboard was used to connect all components, as it simplifies prototyping and testing.
+
+Because the HC-SR04's "echo" pin outputs a 5V signal—exceeding the voltage tolerance of the Nexys A7-50T—we implemented a voltage divider to step the signal down to a safe level.
+
+For final testing, the following configuration was used (see images below):
+The "echo" output pin of the first sensor was connected to port JD3 (JD4 for the second sensor), while the "trigger" input was connected to JD1 (JD2 for the second sensor) on the Nexys A7-50T development board.
+
+![[PXL_20250424_115744207.jpg]](img/HW/PXL_20250424_115744207.jpg)
 
 ## Software description
 ### pulse_enable
