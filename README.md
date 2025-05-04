@@ -61,13 +61,18 @@ The `sensor_readv2` component functions as a finite state machine with three sta
 The component also includes an echo signal synchronizer and a "debouncer" to ensure accurate readings from the sensor, even when the falling or leading edges of the echo signal are distorted.
 
 If the measured distance falls outside the acceptable range, the component will trigger an error signal. Distance bounds are customizable through generic component parameters. Specific software mechanisms for this component are documented in comments directly within the source <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/Sensor_readv2.vhd">file</a>.
+
 ![[tb_sensor_readv2.png]](img/tb_sensor_readv2.png)
 
 ### bin_bcd
-The bin_bcd.vhd component is used to convert the binary distance measured in [sensor_read](#sensor_read.vhd), and convert it to bcd code, which is than further send to [bcd_mux](#bcd_mux.vhd).
 
-We defined two ports: binary_in (for the ) 
-We used the shift plus three algorithm to convert the binary value to bcd. The algorithm takes first 4 bits, compares it, if its bigger than 4 in binary. If it is bigger than 4 we add 3 in binary to the bcd_value and continue to the next 4 bits.
+The <code>bin_bcd.vhd</code> component is used to convert the binary distance measured in the <a href="#sensor_read.vhd">sensor_read</a> component into BCD code. This BCD code is then sent to the <a href="#bcd_mux.vhd">bcd_mux</a> component. By converting the binary value to BCD, further logic can directly work with the digits that will be displayed on the seven-segment display, simplifying the complexity of code in subsequent components.
+
+We defined two ports: <code>binary_in</code> and <code>bcd_out</code>.  
+To convert the binary value to BCD, we used the <strong>Shift-Plus-Three</strong> algorithm. The algorithm processes the first 4 bits of the binary value and compares them to see if they are greater than 4 (in binary). If the value is greater than 4, we add 3 (in binary) to the <code>bcd_value</code> and then proceed to the next 4 bits.  
+
+You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/bin_bcd.vhd">here</a>, and a reference to the algorithm [here](https://github.com/EmanuelAntol/DE1/edit/main/README.md#references).
+
 ![[bin_bcd.png]](img/bin_bcd.png)
 
 ### bcd_mux
