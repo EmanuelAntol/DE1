@@ -50,7 +50,7 @@ The software solution is divided into three main parts to clearly illustrate its
 The following section describes the individual components of the final software implementation.
 
 ### Top_level
-The top_level component is used to integrate all individual modules and connect their inputs and outputs to the corresponding pins on the development board. It also defines the generic parameters for all applicable components. You can see all the individual components in the top_level diagram, in the image below.
+The <code>top_level</code> component is used to integrate all individual modules and connect their inputs and outputs to the corresponding pins on the development board. It also defines the generic parameters for all applicable components. You can see all the individual components in the top_level diagram, in the image below.
 
 <img src="img/Top_level_Schema.png">
 
@@ -68,7 +68,6 @@ If the measured distance falls outside the acceptable range, the component will 
 
 The <code>bin_bcd.vhd</code> component is used to convert the binary distance measured in the <a href="#sensor_read">sensor_read</a> component into BCD code. This BCD code is then sent to the <a href="#bcd_mux">bcd_mux</a> component. By converting the binary value to BCD, further logic can directly work with the digits that will be displayed on the seven-segment display, simplifying the complexity of code in subsequent components.
 
-We defined two ports: <code>binary_in</code> and <code>bcd_out</code>.  
 To convert the binary value to BCD, we used the <strong>Shift-Plus-Three</strong> algorithm. The algorithm processes the first 4 bits of the binary value and compares them to see if they are greater than 4 (in binary). If the value is greater than 4, we add 3 (in binary) to the <code>bcd_value</code> and then proceed to the next 4 bits.  
 
 You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/bin_bcd.vhd">here</a>, and a reference to the algorithm [here](#References).
@@ -76,9 +75,12 @@ You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.s
 ![[bin_bcd.png]](img/bin_bcd.png)
 
 ### bcd_mux
-The bcd_mux component is a multiplexor used to take the input bcd value from 2 sensors and display them on the seven segment display at the same time.
-It takes one half of the inputing bcd values and decides, if it should display it on the right or left seven segment display, by enabling cathodes on the Nexys board. 
-From this half of the bcd value it takes group of 4 binary values and assigns them to the binary output, which is then used in the [bin2seg](#bin2seg).
+
+The <code>bcd_mux</code> component is a multiplexer used to take the input BCD values from the sensors and display them on the seven-segment display "modules" simultaneously. It processes part of the input BCD values and determines which display "module" the data will be shown on by enabling the corresponding cathodes on the Nexys board.  
+
+From this portion of the BCD value, the <code>bcd_mux</code> extracts a group of 4 binary values and assigns them to the binary output. This output is then passed to the <a href="#bin2seg">bin2seg</a> component for further processing.
+
+You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/src_new_new/bcd_mux.vhd">here</a>.
 
 ![[tb_bcd_mux.png]](img/tb_bcd_mux.png)
 
