@@ -1,4 +1,4 @@
-# Ultrasound sensor HS-SR04
+# Ultrasound sensor controller HS-SR04
 ## Team members
 - Emanuel Antol : sensor_read.vhd, Hardware setup, Debugging, Readme file
 - Jan Konkolský : topLevel.vhd, pulse_enable.vhd, Debugging
@@ -31,6 +31,7 @@ The "echo" output pin of the first sensor was connected to port JD3 (JD4 for the
 
 To support efficient testing and collaboration, we designed the software to be as modular as possible.  
 This modular approach allowed for individual components to be developed and tested independently, which proved instrumental in identifying and resolving bugs during the final top-level integration.
+It also makes our solution easily adaptable to support more or fewer sensors (and displays).
 
 The software solution is divided into three main parts to clearly illustrate its functionality:
 
@@ -53,12 +54,13 @@ The top_level component is used to integrate all individual modules and connect 
 
 <img src="img/Top_level_Schema.png">
 
-### pulse_enable
-The pulse_enable component sends 15 us wide pulse to the HS-SR04‘s trigger pin, which will start measuring proces. This component is dependant on the clock signal. If the clock signal is 0 it will not activate the HS-SR04 sensor.
-
 ### sensor_read
-The sensor_read component is working as a finite state machine with 3 states (Waiting, Counting, Write) and it is used to measure the width of the pulse received from the HS-SR04’s echo pin, convert it to a binary distance value and sends it to the [bin_bcd](#bin_bcd). The sensor is calibrated to the ambient temperature of 20°C.
-If the measured distance is out of bounds, it will activate an error signal. Distance bounds are customizable through genreic component parameters.
+
+The `sensor_readv2` component functions as a finite state machine with three states: **Waiting**, **Counting**, and **Write**. It is responsible for measuring the width of the pulse received from the HS-SR04’s echo pin, converting it into a binary distance value, and sending it to the [bin_bcd](#bin_bcd) component. The sensor is calibrated to an ambient temperature of 20°C, although this can be easily adjusted.
+
+The component also includes an echo signal synchronizer and a "debouncer" to ensure accurate readings from the sensor, even when the falling or leading edges of the echo signal are distorted.
+
+If the measured distance falls outside the acceptable range, the component will trigger an error signal. Distance bounds are customizable through generic component parameters. Specific software mechanisms for this component are documented in comments directly within the source <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/Sensor_readv2.vhd">file</a>.
 ![[tb_sensor_readv2.png]](img/tb_sensor_readv2.png)
 
 ### bin_bcd
@@ -79,6 +81,9 @@ This component also incorporates hold function that is used to hold the current 
 
 ### bin2seg
 The bin2seg component is used to convert the inputing distance value and display it on the 7 segment display. 
+
+### pulse_enable
+The pulse_enable component sends 15 us wide pulse to the HS-SR04‘s trigger pin, which will start measuring proces. This component is dependant on the clock signal. If the clock signal is 0 it will not activate the HS-SR04 sensor.
 
 ### clock_en
 The clock_en component is used to supply clock signal to components that require clock signal. Components which require clock signal: [pulse_enable](#pulse_enable), [sensor_read](#sensor_read) and [bcd_mux](#bcd_mux) 
