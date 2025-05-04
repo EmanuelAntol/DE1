@@ -22,7 +22,7 @@ For final testing, the following configuration was used (see images below):
 The "echo" output pin of the first sensor was connected to port JD3 (JD4 for the second sensor), while the "trigger" input was connected to JD1 (JD2 for the second sensor) on the Nexys A7-50T development board.
 
 <p align="center">
-  <img src="img/HW/PXL_20250424_115744207.jpg" height="480"/> <img src="img/HW/ultrasonic_resistors.jpg" height="480"/> 
+  <img src="img/HW/PXL_20250424_115744207.jpg" height="320"/> <img src="img/HW/ultrasonic_resistors.jpg" height="320"/> 
 </p>
 
 
