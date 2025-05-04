@@ -8,31 +8,31 @@ entity Sensor_readv2 is
         MAX_ERR_DISTANCE : integer := 400
     );
     port (
-        clk		    : in STD_LOGIC;                                        -- 100MHZ board clock input                       
-		echo		: in STD_LOGIC;                                        -- Input signal from the sensors (peak width measurement)
-		oob_error	: out STD_LOGIC;                                -- Indicator for when the measured distance is too short or too long (set the bounds in MIN/MAX_ERR_DISTANCE generic varibles)
-		distance	: out STD_LOGIC_VECTOR (8 downto 0)     -- Hardware distance limit is ~2-400cm => 9 bit output is needed
+        	clk		    : in STD_LOGIC;                                        	-- 100MHZ board clock input                       
+		echo		: in STD_LOGIC;                                        		-- Input signal from the sensors (peak width measurement)
+		oob_error	: out STD_LOGIC;                                		-- Indicator for when the measured distance is too short or too long (set the bounds in MIN/MAX_ERR_DISTANCE generic varibles)
+		distance	: out STD_LOGIC_VECTOR (8 downto 0)     			-- Hardware distance limit is ~2-400cm => 9 bit output is needed
     );
 
 end Sensor_readv2;
 
 architecture Behavioral of Sensor_readv2 is
-    constant CM : integer := 5827;                                  -- Number of clock pulses from 100MHz signal need for sound wave to travel 1cm
-    constant DEBOUNCE_THRESHOLD : integer := 10;                    -- Debounce time in clock cycles
-    signal counter : integer range 0 to CM + 10;                     -- Internal clock counter
-    signal tmp_dst_out : integer range 0 to 450;                    -- Temporary distance signal
-    signal echo_sync     : std_logic := '0';                        -- Synchronized echo
-    signal echo_stable   : std_logic := '0';                        -- Debounced echo
-    signal echo_last     : std_logic := '0';                        -- Previous state
-    signal debounce_cnt  : integer range 0 to DEBOUNCE_THRESHOLD + 1 := 0;  -- Debounce counter
+    constant CM : integer := 5827;                                  				-- Number of clock pulses from 100MHz signal need for sound wave to travel 1cm
+    constant DEBOUNCE_THRESHOLD : integer := 10;                    				-- Debounce time in clock cycles
+    signal counter : integer range 0 to CM + 10;                     				-- Internal clock counter
+    signal tmp_dst_out : integer range 0 to 450;                    				-- Temporary distance signal
+    signal echo_sync     : std_logic := '0';                        				-- Synchronized echo
+    signal echo_stable   : std_logic := '0';                        				-- Debounced echo
+    signal echo_last     : std_logic := '0';                        				-- Previous state
+    signal debounce_cnt  : integer range 0 to DEBOUNCE_THRESHOLD + 1 := 0;  			-- Debounce counter
     type state_type is (IDLE, COUNTING, WRITE);    
-    signal current_state : state_type := IDLE;             -- Defining the FSM state tracker variable and possible states
+    signal current_state : state_type := IDLE;             					-- Defining the FSM state tracker variable and possible states
     
 
 begin
 
-    debounce_process : process(clk, echo)
-        begin
+    debounce_process : process(clk, echo) 							--Echo synchronization and debouce process. The echo from sensor needs to have the same value for 10 cycles (defined by constant) 
+        begin											--for it to be considered "stable"
             if rising_edge(clk) then
                 echo_sync <= echo;  
         
@@ -56,42 +56,46 @@ begin
     read_sens : process (clk, echo) is         
         begin 
         
-        if rising_edge(clk) then
-            case current_state is                              -- FSM process
-                when IDLE =>                                   -- "IDLE" state resets the temporary distance, counter signal and waits until the sensor echo signal is HIGH
+        if rising_edge(clk) then								-- FSM process
+            case current_state is                              
+                
+		when IDLE =>                                   					-- "IDLE" state resets the temporary distance, counter signal and waits until the sensor echo signal is HIGH
                     counter  <= 0;
                     tmp_dst_out <= 0;
+		
                     if (echo_stable = '1') then
                         current_state <= COUNTING;
+		
                     end if;
                 
                     
-                when COUNTING =>
-                    if (echo_stable = '1' and counter = CM) then      -- when the amount of clock high signals ("counter") reaches a number coresponding to 1cm of lenght,
-                        tmp_dst_out <= tmp_dst_out + 1;        -- the "counter" is reset and distance counter incremented by 1 ("tmp_dst_out")
-                        counter <= 0;
+                when COUNTING =>								-- "COUNTING" state counts the number of clock high signals that the "echo" is HIGH
+			    
+                    if (echo_stable = '1' and counter = CM) then      				-- when the amount of clock high signals ("counter") reaches a number coresponding to 1cm of lenght,
+                        tmp_dst_out <= tmp_dst_out + 1;        					-- the "counter" is reset and distance counter incremented by 1 ("tmp_dst_out")
+                        counter <= 0;								
                     else    
-                        counter <= counter + 1;
+                        counter <= counter + 1;							-- othewise the clock "counter" is incremented by 1
                     end if;
-                                                               -- "COUNTING" state counts the number of clock high signals that the "echo" is HIGH
-                    if (echo_stable = '0' or tmp_dst_out > 400) then                       -- if "echo" drops to LOW, the counting stops
+                                                               
+                    if (echo_stable = '0' or tmp_dst_out > 400) then                      	-- if "echo" drops to LOW or the cm count reaches sensor limit, the counting stops
                         current_state <= WRITE;
                     end if;
                     
                     
                         
-                when WRITE =>                                  -- "WRITE" state sets the "distance" component output to the measured "tmp_dst_out" value 
+                when WRITE =>                                  					-- "WRITE" state sets the "distance" component output to the measured "tmp_dst_out" value in binary
                     distance <= std_logic_vector(to_unsigned(tmp_dst_out, 9));
-                                                               -- if the measured value is lower or higher than the customized limits, the "oob_error" is set to HIGH
+                                                               					-- if the measured value is lower or higher than the customized limits, the "oob_error" is set to HIGH
                     if (tmp_dst_out < MIN_ERR_DISTANCE or tmp_dst_out > MAX_ERR_DISTANCE) then
                         oob_error <= '1';
                     else
                         oob_error <= '0';
                     end if;
                     
-                    --if (echo_stable = '0') then                    
-                    current_state <= IDLE;
-                    --end if;
+                    if (echo_stable = '0') then                    				-- the FSM only resets to the "IDLE" state, when the echo has dropped low. This prevents "double counting" a signal, when "echo" is active for too long
+                    	current_state <= IDLE;
+                    end if;
                
                 
             end case;
