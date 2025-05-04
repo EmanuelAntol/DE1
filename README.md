@@ -80,23 +80,32 @@ The <code>bcd_mux</code> component is a multiplexer used to take the input BCD v
 
 From this portion of the BCD value, the <code>bcd_mux</code> extracts a group of 4 binary values and assigns them to the binary output. This output is then passed to the <a href="#bin2seg">bin2seg</a> component for further processing.
 
-This component also includes a <strong>hold</strong> function, which allows the currently displayed value to be retained on the display when the center button is pressed.
-
+This component also includes a <strong>hold</strong> function, which allows the currently displayed value to be retained on the display when the center button is held.
 
 You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/src_new_new/bcd_mux.vhd">here</a>.
 
 ![[tb_bcd_mux.png]](img/tb_bcd_mux.png)
 
 ### bin2seg
-The bin2seg component is used to convert the inputing distance value and display it on the 7 segment display. 
+
+The <code>bin2seg</code> component is used to convert the input binary distance value and display it on the seven-segment display.
+
+This component was created as part of the digital electronics classes. You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/bin2seg.vhd">here</a>, and a reference to the Digital Electronics course [here](#References).
 
 ### pulse_enable
-The pulse_enable component sends 15 us wide pulse to the HS-SR04‘s trigger pin, which will start measuring proces. This component is dependant on the clock signal. If the clock signal is 0 it will not activate the HS-SR04 sensor.
+
+The <code>pulse_enable</code> component sends a 15 µs wide pulse to the HS-SR04's trigger pin, initiating the measurement process. This component is activated at regular intervals by a signal from the [clock_enable](#clock_enable) component.
+
+You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/pulse_enable.vhd">here</a>.
 
 ### clock_en
-The clock_en component is used to supply clock signal to components that require clock signal. Components which require clock signal: [pulse_enable](#pulse_enable), [sensor_read](#sensor_read) and [bcd_mux](#bcd_mux) 
+
+The <code>clock_en</code> component is used to supply the clock signal to components that require it. These components include: <a href="#pulse_enable">pulse_enable</a>, <a href="#sensor_read">sensor_read</a>, and <a href="#bcd_mux">bcd_mux</a>.
 
 ## References
 
 1. Inspiration for the bin_bcd component: https://piembsystech.com/binary-to-bcd-conversion-in-vhdl-programming-language/
-2. Bin2seg and clock_en components reused from Digital electronics course repository https://github.com/tomas-fryza/vhdl-labs/tree/master
+2. Bin2seg and clock_en components reused from Digital electronics course repository: https://github.com/tomas-fryza/vhdl-labs/tree/master
+3. OpenAI's ChatGPT was used to generate testing data and simplify documentation creation: https://openai.com/
+4. Ultrasonic Ranging Module HC - SR04: https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
+5. Online VHDL Testbench Template Generator: https://vhdl.lapinoo.net/
