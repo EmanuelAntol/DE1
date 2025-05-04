@@ -1,14 +1,16 @@
 # Ultrasound sensor HS-SR04
 ## Team members
-- Emanuel Antol : Team leader, sensor_read.vhd, debugging, hardware setup
+- Emanuel Antol : sensor_read.vhd, hardware setup, Readme file, debugging
 - Jan Konkolský : topLevel.vhd, pulse_enable.vhd, debugging
 - Vojtěch Trunda : bcd_mux.vhd, debugging, hardware setup
 - David Karas : bin_bcd.vhd, Documentation, Readme file
 
-### Abstract
-The goal of this project was to measure distance from two separate HS-SR04 ultrasound sensors, and display them on two seven-segment displays at the same time. For background functions we used the Nexys A7 50-T and Arduino UNO as a power supply for the HS-SR04 sensor, as the Nexys A7 50-5 does not support the 3.3V output.
+### Project Overview
+The objective of this project was to develop a controller for HC-SR04 ultrasonic sensors. After a thorough discussion among all team members, we agreed on a clear implementation goal.
 
-If the measured distance is higher (or lower) than the ultrasound is able to measure, a red diod will light up. According to the datasheet, the distance range which the sensor is able to correctly measure is from 2 cm to 400 cm.
+Our aim was to measure distances using two separate HC-SR04 ultrasonic sensors and simultaneously display both measurements in centimeters on two individual seven-segment display "modules". Based on prior experience with the HC-SR04, we were aware that its accuracy decreases near the edges of its measurement range. To address this limitation, we decided to include an error indicator in our system. This indicator notifies the user when a measured distance falls outside the reliable, customizable operating range of the sensor—either too close or too far to be considered accurate or stable.
+
+The following sections describe our final hardware and software solutions designed to meet these objectives.
 
 ## Hardware description of demo application
 In our application we put the HS-SR04 sensor on the bredboard, which makes it easier for prototyping.
@@ -52,4 +54,4 @@ The clock_en component is used to supply clock signal to components that require
 ## References
 
 1. Inspiration for the bin_bcd component: https://piembsystech.com/binary-to-bcd-conversion-in-vhdl-programming-language/
-2. ...
+2. Bin2seg and clock_en components reused from Digital electronics course repository https://github.com/tomas-fryza/vhdl-labs/tree/master
