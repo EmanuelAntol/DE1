@@ -1,8 +1,8 @@
 # Ultrasound sensor HS-SR04
 ## Team members
-- Emanuel Antol : sensor_read.vhd, hardware setup, debugging
-- Jan Konkolský : topLevel.vhd, pulse_enable.vhd, debugging
-- Vojtěch Trunda : bcd_mux.vhd, debugging, hardware setup
+- Emanuel Antol : sensor_read.vhd, hardware setup, Debugging, Readme file
+- Jan Konkolský : topLevel.vhd, pulse_enable.vhd, Debugging
+- Vojtěch Trunda : bcd_mux.vhd, Debugging, hardware setup
 - David Karas : bin_bcd.vhd, Documentation, Readme file
 
 ### Project Overview
@@ -26,7 +26,13 @@ The "echo" output pin of the first sensor was connected to port JD3 (JD4 for the
 </p>
 
 
-## Software description
+## Software Architecture and Implementation
+### Top_level
+The top_level component is used to integrate all individual modules and connect their inputs and outputs to the corresponding pins on the development board. It also defines the generic parameters for all applicable components. You can see all the individual components, as well as the top_level diagram, in the image below.
+
+![[top_level.png]](img/top_level.png)
+
+
 ### pulse_enable
 The pulse_enable component sends 15 us wide pulse to the HS-SR04‘s trigger pin, which will start measuring proces. This component is dependant on the clock signal. If the clock signal is 0 it will not activate the HS-SR04 sensor.
 
@@ -53,9 +59,6 @@ This component also incorporates hold function that is used to hold the current 
 
 ### bin2seg
 The bin2seg component is used to convert the inputing distance value and display it on the 7 segment display. 
-
-### top_level
-The top_level component is used to incorporate all of the components mentioned above, and to connect their inputs and outputs with the corresponding inputs and outputs. 
 
 ### clock_en
 The clock_en component is used to supply clock signal to components that require clock signal. Components which require clock signal: [pulse_enable](#pulse_enable), [sensor_read](#sensor_read) and [bcd_mux](#bcd_mux) 
