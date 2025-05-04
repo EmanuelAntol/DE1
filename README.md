@@ -66,12 +66,12 @@ If the measured distance falls outside the acceptable range, the component will 
 
 ### bin_bcd
 
-The <code>bin_bcd.vhd</code> component is used to convert the binary distance measured in the <a href="#sensor_read.vhd">sensor_read</a> component into BCD code. This BCD code is then sent to the <a href="#bcd_mux.vhd">bcd_mux</a> component. By converting the binary value to BCD, further logic can directly work with the digits that will be displayed on the seven-segment display, simplifying the complexity of code in subsequent components.
+The <code>bin_bcd.vhd</code> component is used to convert the binary distance measured in the <a href="#sensor_read">sensor_read</a> component into BCD code. This BCD code is then sent to the <a href="#bcd_mux">bcd_mux</a> component. By converting the binary value to BCD, further logic can directly work with the digits that will be displayed on the seven-segment display, simplifying the complexity of code in subsequent components.
 
 We defined two ports: <code>binary_in</code> and <code>bcd_out</code>.  
 To convert the binary value to BCD, we used the <strong>Shift-Plus-Three</strong> algorithm. The algorithm processes the first 4 bits of the binary value and compares them to see if they are greater than 4 (in binary). If the value is greater than 4, we add 3 (in binary) to the <code>bcd_value</code> and then proceed to the next 4 bits.  
 
-You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/bin_bcd.vhd">here</a>, and a reference to the algorithm [here](https://github.com/EmanuelAntol/DE1/edit/main/README.md#references).
+You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/bin_bcd.vhd">here</a>, and a reference to the algorithm [here](#References).
 
 ![[bin_bcd.png]](img/bin_bcd.png)
 
