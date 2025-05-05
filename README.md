@@ -110,4 +110,4 @@ This component was created as part of the digital electronics classes. You can f
 2. Bin2seg and clock_en components reused from Digital electronics course repository: https://github.com/tomas-fryza/vhdl-labs/tree/master
 3. OpenAI's ChatGPT was used to generate testing data and simplify documentation creation: https://openai.com/
 4. Ultrasonic Ranging Module HC - SR04: https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
-5. Online VHDL Testbench Template Generator: https://vhdl.lapinoo.net/
+5. Online VHDL Testbench Template Generator: https://vhdl.lapinoo.net/ 
