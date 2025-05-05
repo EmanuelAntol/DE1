@@ -100,7 +100,7 @@ You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.s
 
 ### clock_en
 
-The <code>clock_en</code> component is used to supply the clock signal to components that require it. These components include: <a href="#pulse_enable">pulse_enable</a>, <a href="#sensor_read">sensor_read</a>, and <a href="#bcd_mux">bcd_mux</a>.
+The <code>clock_en</code> component is used to supply reduced clock signal to components that require it. These components include: <a href="#pulse_enable">pulse_enable</a>, <a href="#sensor_read">sensor_read</a>, and <a href="#bcd_mux">bcd_mux</a>.
 
 This component was created as part of the digital electronics classes. You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/clock_en.vhd">here</a>, and a reference to the Digital Electronics course [here](#References).
 
