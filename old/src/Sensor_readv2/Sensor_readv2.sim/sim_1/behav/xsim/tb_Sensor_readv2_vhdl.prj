@@ -1,7 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../Sensor_readv2.srcs/sources_1/new/Sensor_readv2.vhd" \
-"../../../../Sensor_readv2.srcs/sim_1/new/Sensor_readv2_tb.vhd" \
-
-# Do not sort compile order
-nosort
