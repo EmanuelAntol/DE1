@@ -52,7 +52,7 @@ The following section describes the individual components of the final software 
 ### Top_level
 The <code>top_level</code> component is used to integrate all individual modules and connect their inputs and outputs to the corresponding pins on the development board. It also defines the generic parameters for all applicable components. You can see all the individual components in the top_level diagram, in the image below.
 
-<img src="img/Top_level_Schema.png">
+<img src="img/Top_level_Schema2.png">
 
 ### sensor_read
 
