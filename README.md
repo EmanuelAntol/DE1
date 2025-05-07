@@ -52,6 +52,8 @@ The following section describes the individual components of the final software 
 ### Top_level
 The <code>top_level</code> component is used to integrate all individual modules and connect their inputs and outputs to the corresponding pins on the development board. It also defines the generic parameters for all applicable components. You can see all the individual components in the top_level diagram, in the image below.
 
+You can find the code for this component <a href="source/UltraSonicSensorNew/UltraSonicSensorNew.srcs/sources_1/imports/src_new_new/top_level.vhd">here</a>.
+
 <img src="img/Top_level_Schema2.png">
 
 ### sensor_read
@@ -60,7 +62,7 @@ The `sensor_readv2` component functions as a finite state machine with three sta
 
 The component also includes an echo signal synchronizer and a "debouncer" to ensure accurate readings from the sensor, even when the falling or leading edges of the echo signal are distorted.
 
-If the measured distance falls outside the acceptable range, the component will trigger an error signal. Distance bounds are customizable through generic component parameters. Specific software mechanisms for this component are documented in comments directly within the source <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/Sensor_readv2.vhd">file</a>.
+If the measured distance falls outside the acceptable range, the component will trigger an error signal. Distance bounds are customizable through generic component parameters. Specific software mechanisms for this component are documented in comments directly within the source <a href="source/UltraSonicSensorNew/UltraSonicSensorNew.srcs/sources_1/imports/src_new_new/Sensor_readv2.vhd">file</a>.
 
 ![[tb_sensor_readv2.png]](img/tb_sensor_readv2.png)
 
@@ -70,7 +72,7 @@ The <code>bin_bcd.vhd</code> component is used to convert the binary distance me
 
 To convert the binary value to BCD, we used the <strong>Shift-Plus-Three</strong> algorithm. The algorithm processes the first 4 bits of the binary value and compares them to see if they are greater than 4 (in binary). If the value is greater than 4, we add 3 (in binary) to the <code>bcd_value</code> and then proceed to the next 4 bits.  
 
-You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/bin_bcd.vhd">here</a>, and a reference to the algorithm [here](#References).
+You can find the code for this component <a href="source/UltraSonicSensorNew/UltraSonicSensorNew.srcs/sources_1/imports/src_new_new/bin_bcd.vhd">here</a>, and a reference to the algorithm [here](#References).
 
 ![[bin_bcd.png]](img/bin_bcd.png)
 
@@ -82,7 +84,7 @@ From this portion of the BCD value, the <code>bcd_mux</code> extracts a group of
 
 This component also includes a <strong>hold</strong> function, which allows the currently displayed value to be retained on the display when the center button is held.
 
-You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/src_new_new/bcd_mux.vhd">here</a>.
+You can find the code for this component <a href="source/UltraSonicSensorNew/UltraSonicSensorNew.srcs/sources_1/imports/src_new_new/bcd_mux.vhd">here</a>.
 
 ![[tb_bcd_mux.png]](img/tb_bcd_mux.png)
 
@@ -90,19 +92,19 @@ You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.s
 
 The <code>bin2seg</code> component is used to convert the input binary distance value and display it on the seven-segment display.
 
-This component was created as part of the digital electronics classes. You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/bin2seg.vhd">here</a>, and a reference to the Digital Electronics course [here](#References).
+This component was created as part of the digital electronics classes. You can find the code for this component <a href="source/UltraSonicSensorNew/UltraSonicSensorNew.srcs/sources_1/imports/src_new_new/bin2seg.vhd">here</a>, and a reference to the Digital Electronics course [here](#References).
 
 ### pulse_enable
 
 The <code>pulse_enable</code> component sends a 15 µs wide pulse to the HS-SR04's trigger pin, initiating the measurement process. This component is activated at regular intervals by a signal from the [clock_enable](#clock_enable) component.
 
-You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/pulse_enable.vhd">here</a>.
+You can find the code for this component <a href="source/UltraSonicSensorNew/UltraSonicSensorNew.srcs/sources_1/imports/src_new_new/pulse_enable.vhd">here</a>.
 
 ### clock_en
 
 The <code>clock_en</code> component is used to supply reduced clock signal to components that require it. These components include: <a href="#pulse_enable">pulse_enable</a>, <a href="#sensor_read">sensor_read</a>, and <a href="#bcd_mux">bcd_mux</a>.
 
-This component was created as part of the digital electronics classes. You can find the code for this component <a href="source/ProjektDE1/ProjektDE1.srcs/sources_1/imports/256762/clock_en.vhd">here</a>, and a reference to the Digital Electronics course [here](#References).
+This component was created as part of the digital electronics classes. You can find the code for this component <a href="source/UltraSonicSensorNew/UltraSonicSensorNew.srcs/sources_1/imports/src_new_new/clock_en.vhd">here</a>, and a reference to the Digital Electronics course [here](#References).
 
 ## References
 
