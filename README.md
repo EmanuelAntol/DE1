@@ -54,7 +54,7 @@ The <code>top_level</code> component is used to integrate all individual modules
 
 You can find the code for this component <a href="source/UltraSonicSensorNew/UltraSonicSensorNew.srcs/sources_1/imports/src_new_new/top_level.vhd">here</a>.
 
-<img src="img/Top_level_Schema2.png">
+<img src="img/Schema.png">
 
 ### sensor_read
 
