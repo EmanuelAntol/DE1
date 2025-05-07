@@ -104,7 +104,7 @@ begin
 			
     clock_display : clock_en
 			generic map (
-				n_periods => 1
+				n_periods => 250_000
 			)
 			port map (
 				clk     => CLK100MHZ,
@@ -179,7 +179,7 @@ begin
 	    )
 		port map (
 			clk    => CLK100MHZ,
-			enable => clock_signal,
+			enable => clock_signal_display,
 			hold   => BTNC,
            	bcd    => bcd_in_mux,
            	bin    => binary_out_mux,
