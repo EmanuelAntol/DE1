@@ -202,6 +202,4 @@ begin
 		--Trigger signals to ultrasound sensors
 		JD1 <= trigger_pulse;
 		JD2 <= trigger_pulse;
-		--LED16_R <= '0';
-		--LED17_R <= '0';
 end Behavioral;

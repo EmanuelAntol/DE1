@@ -20,13 +20,13 @@ begin
 		end if;
 
 		if (rising_edge(clk)) then
-          		if (start_pulse = '1') then 		-- zacne se generovat pulz pozadovane sirky
-            			if (sig_counter = 1500) then 	-- dokud neni counter 1500 coz znamena sirku pulzu 15 ns
-					trigger <= '0'; 	-- vynulovani vystupu
-					start_pulse <= '0'; 	-- ukonceni generovani
-					sig_counter <= 0; 	-- vynulovani counteru
+          		if (start_pulse = '1') then 		-- Pulse generation starts
+            			if (sig_counter = 1500) then 	-- The pulse is being generated until the internal counter reaches 1500 which means 15us pulse
+					trigger <= '0'; 	-- Set output value to zero
+					start_pulse <= '0'; 	-- Stop generating the pulse
+					sig_counter <= 0; 	-- Reset internal counter value back to zero
 				else
-					trigger <= '1'; 	-- vystup na 1
+					trigger <= '1'; 	-- Output value is set to 1 while generating the pulse
 					sig_counter <= sig_counter + 1;
 				end if;
 			end if;
