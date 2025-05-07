@@ -106,6 +106,10 @@ The <code>clock_en</code> component is used to supply reduced clock signal to co
 
 This component was created as part of the digital electronics classes. You can find the code for this component <a href="source/UltraSonicSensorNew/UltraSonicSensorNew.srcs/sources_1/imports/src_new_new/clock_en.vhd">here</a>, and a reference to the Digital Electronics course [here](#References).
 
+## Debugging
+
+![[PXL_20250410_121718498.MP.jpg]](img/HW/PXL_20250410_121718498.MP.jpg)
+
 ## References
 
 1. Inspiration for the bin_bcd component: https://piembsystech.com/binary-to-bcd-conversion-in-vhdl-programming-language/
